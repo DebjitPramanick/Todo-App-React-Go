@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     container: {
         borderRadius: '6px',
         boxShadow: '2px 2px 4px lightgrey',
-        padding: '6px 4px',
+        padding: '6px 10px',
         margin: '10px 0',
         color: 'grey',
         cursor: 'pointer',
@@ -29,7 +29,7 @@ const TodoItem: React.FC<ItemProps> = ({ todo, setTodos }) => {
     const handleCheckUncheck = async () => {
         try {
             let result;
-            if(!todo.done){
+            if (!todo.done) {
                 result = await checkTodo(todo.id);
             } else {
                 result = await unCheckTodo(todo.id);
@@ -41,11 +41,14 @@ const TodoItem: React.FC<ItemProps> = ({ todo, setTodos }) => {
     }
 
     return (
-        <Box className={classes.container}>
+        <Box className={classes.container} style={{
+            background: `${todo.done ? '#f3f3f3' : '#fff'}`,
+            textDecoration: `${todo.done ? 'line-through' : ''}`,
+        }}>
             <IconButton style={{ height: 'fit-content' }} size="small">
                 {todo.done ?
-                    <CheckCircleIcon color='success' onClick={handleCheckUncheck}/>
-                    : <RadioButtonUncheckedIcon color='primary'  onClick={handleCheckUncheck}/>
+                    <CheckCircleIcon style={{ color: '#67e7bd' }} onClick={handleCheckUncheck} />
+                    : <RadioButtonUncheckedIcon style={{ color: '#b3b3b3' }} onClick={handleCheckUncheck} />
                 }
             </IconButton>
             <Box>

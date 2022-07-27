@@ -1,6 +1,7 @@
 import { Box, makeStyles } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { getTodos } from '../utils/api.helper'
+import NewTodo from './NewTodo'
 import TodoItem from './TodoItem'
 
 const useStyles = makeStyles(() => ({
@@ -29,6 +30,7 @@ const Todos = () => {
 
     return (
         <Box className={classes.container}>
+            <NewTodo setTodos={setTodos}/>
             {todos.map((todo: any) => (
                 <TodoItem
                     key={todo.id}

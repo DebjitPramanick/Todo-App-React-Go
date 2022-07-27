@@ -15,7 +15,7 @@ export const getTodos = async () => {
 }
 
 export const createTodo = async (data: any) => {
-    const result = await API.post("/todo")
+    const result = await API.post("/todo", data)
     .then(res => res)
     .catch(err => {
         console.log("ERROR ==> ", err)
