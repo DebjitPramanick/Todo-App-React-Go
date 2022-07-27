@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 type Todo struct {
@@ -18,6 +19,11 @@ func main() {
 	fmt.Println("Server is running...")
 	app := fiber.New()
 	todos := []Todo{}
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowHeaders: "*",
+	}))
 
 	app.Get("/healthz", func(c *fiber.Ctx) error {
 		return c.SendString("APP IS RUNNING")
