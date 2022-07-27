@@ -23,7 +23,7 @@ const Todos = () => {
             const res = await getTodos();
             setTodos(res.data)
         } catch (err) {
-            alert("Error occurred when fetching todos.")
+            alert(err)
         }
     }
 

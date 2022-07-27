@@ -29,26 +29,26 @@ const TodoItem: React.FC<ItemProps> = ({ todo, setTodos }) => {
     const handleCheckUncheck = async () => {
         try {
             let result;
-            if(todo.done){
+            if(!todo.done){
                 result = await checkTodo(todo.id);
             } else {
                 result = await unCheckTodo(todo.id);
             }
             setTodos(result.data)
         } catch (err) {
-            alert("Error occurred when checking todo.")
+            alert(err)
         }
     }
 
     return (
         <Box className={classes.container}>
-            <IconButton style={{ height: 'fit-content' }}>
+            <IconButton style={{ height: 'fit-content' }} size="small">
                 {todo.done ?
                     <CheckCircleIcon color='success' onClick={handleCheckUncheck}/>
                     : <RadioButtonUncheckedIcon color='primary'  onClick={handleCheckUncheck}/>
                 }
             </IconButton>
-            <Box style={{ marginTop: '6px' }}>
+            <Box>
                 <Typography variant='h5'>{todo.title}</Typography>
                 <Typography variant='body1' style={{ display: 'block', marginTop: '6px' }}>{todo.body}</Typography>
             </Box>
